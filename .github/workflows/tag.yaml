@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       module: ${{ steps.module_prefix.outputs.module }}
-      version: ${{ steps.release.outputs.version }}
+      version: ${{ steps.extract_version.outputs.version }}
     permissions:
       contents: write
       pull-requests: write
