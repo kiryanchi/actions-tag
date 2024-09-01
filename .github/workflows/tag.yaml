@@ -4,11 +4,11 @@ on:
     branches: ["main"]
 
 jobs:
-  extract-info:
+  release:
     runs-on: ubuntu-latest
     outputs:
       module: ${{ steps.module_prefix.outputs.module }}
-      version: ${{ steps.extract_version.outputs.version }}
+      version: ${{ steps.release.outputs.version }}
     permissions:
       contents: write
       pull-requests: write
@@ -36,6 +36,6 @@ jobs:
     uses: ./.github/workflows/deploy.yaml
     secrets: inherit
     with:
-      version: ${{ needs.extract-info.outputs.version }}
+      version: ${{ needs.release.outputs.version }}
     permissions:
       contents: write

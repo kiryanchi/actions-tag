@@ -34,9 +34,3 @@ jobs:
       - name: Cat application-version.yaml
         run: |
           echo "version: $(cat src/main/resources/application-version.yaml)"
-
-      - name: Get Version
-        id: get_version
-        run: |
-          VERSION_WITHOUT_V="$(cut -d 'v' -f 2 <<< ${{ inputs.version }})"
-          echo "VERSION=$VERSION_WITHOUT_V" >> $GITHUB_OUTPUT
