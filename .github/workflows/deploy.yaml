@@ -41,11 +41,11 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-
 
-#      - name: Write application-version.yaml
-#        run: |
-#            echo "app:" > src/main/resources/application-version.yaml
-#            echo "  version:" >> src/main/resources/application-version.yaml
-#            echo "    ${{ inputs.version }}" >> src/main/resources/application-version.yaml
+      - name: Write application-version.yaml
+        run: |
+            echo "app:" > src/main/resources/application-version.yaml
+            echo "  version:" >> src/main/resources/application-version.yaml
+            echo "    ${{ inputs.version }}" >> src/main/resources/application-version.yaml
 
       - name: Cat application-version.yaml
         run: |
