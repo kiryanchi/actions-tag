@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: actions-tag
+
+  profiles:
+    include: version
