@@ -22,6 +22,19 @@ jobs:
         run: |
           echo "TAGS=${{ inputs.version }}"
 
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v2
+
+      - name: Write application-version.yaml
+        run: |
+            echo "app:" > src/main/resources/application-version.yaml
+            echo "  version:" >> src/main/resources/application-version.yaml
+            echo "    ${{ inputs.version }}" >> src/main/resources/application-version.yaml
+
+      - name: Cat application-version.yaml
+        run: |
+          echo "version: $(cat src/main/resources/application-version.yaml)"
+
       - name: Get Version
         id: get_version
         run: |
