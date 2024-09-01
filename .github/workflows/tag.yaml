@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       module: ${{ steps.module_prefix.outputs.module }}
-      tag: ${{ steps.tag_version.outputs.version }}
+      version: ${{ steps.tag_version.outputs.version }}
     permissions:
       contents: write
       pull-requests: write
@@ -36,6 +36,6 @@ jobs:
     uses: ./.github/workflows/deploy.yaml
     secrets: inherit
     with:
-      tags: ${{ needs.extract-info.outputs.tag }}
+      version: ${{ needs.extract-info.outputs.version }}
     permissions:
       contents: write

@@ -3,7 +3,7 @@ name: Deploy
 on:
   workflow_call:
     inputs:
-      tags:
+      version:
         description: 'Deploy - v*.*.*'
         required: true
         type: string
@@ -20,10 +20,10 @@ jobs:
 
         - name: Check Tags
           run: |
-            echo "TAGS=${{ inputs.tags }}"
+            echo "TAGS=${{ inputs.version }}"
 
         - name: Get Version
           id: get_version
           run: |
-            VERSION_WITHOUT_V="$(cut -d 'v' -f 2 <<< ${{ inputs.tags }})"
+            VERSION_WITHOUT_V="$(cut -d 'v' -f 2 <<< ${{ inputs.version }})"
             echo "VERSION=$VERSION_WITHOUT_V" >> $GITHUB_OUTPUT
