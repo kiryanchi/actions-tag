@@ -9,21 +9,21 @@ on:
         type: string
 
 jobs:
-    deploy:
-      runs-on: ubuntu-latest
-      permissions:
-        contents: write
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
-      steps:
-        - name: Checkout
-          uses: actions/checkout@v4
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
 
-        - name: Check Tags
-          run: |
-            echo "TAGS=${{ inputs.version }}"
+      - name: Check Tags
+        run: |
+          echo "TAGS=${{ inputs.version }}"
 
-        - name: Get Version
-          id: get_version
-          run: |
-            VERSION_WITHOUT_V="$(cut -d 'v' -f 2 <<< ${{ inputs.version }})"
-            echo "VERSION=$VERSION_WITHOUT_V" >> $GITHUB_OUTPUT
+      - name: Get Version
+        id: get_version
+        run: |
+          VERSION_WITHOUT_V="$(cut -d 'v' -f 2 <<< ${{ inputs.version }})"
+          echo "VERSION=$VERSION_WITHOUT_V" >> $GITHUB_OUTPUT
