@@ -1,0 +1,25 @@
+name: Deploy
+
+on:
+  workflow_call:
+    inputs:
+      tags:
+        description: 'Deploy - v*.*.*'
+        required: true
+        type: string
+
+jobs:
+    deploy:
+      runs-on: ubuntu-latest
+      permissions:
+        contents: write
+
+      steps:
+        - name: Checkout
+          uses: actions/checkout@v2
+
+        - name: Get Version
+          id: get_version
+          run: |
+            VERSION_WITHOUT_V="$(cut -d 'v' -f 2 <<< ${{ inputs.tags }})"
+            echo "VERSION=$VERSION_WITHOUT_V" >> $GITHUB_OUTPUT
