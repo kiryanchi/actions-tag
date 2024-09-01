@@ -32,7 +32,7 @@ jobs:
           tag_name: v${{ steps.extract_version.outputs.version }}
 
   call-deploy:
-    needs: extract-info
+    needs: release
     uses: ./.github/workflows/deploy.yaml
     secrets: inherit
     with:
