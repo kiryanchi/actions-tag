@@ -41,6 +41,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: check version
+        run: |
+          echo "version=${{ steps.extract_version.outputs.version }}"
+
       - name: Deploy
         uses: ./.github/workflows/deploy
         with:
