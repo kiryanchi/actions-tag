@@ -6,8 +6,13 @@ on:
 jobs:
   extract-info:
     runs-on: ubuntu-latest
+    outputs:
+      module: ${{ steps.module_prefix.outputs.module }}
+      tag: ${{ steps.tag_version.outputs.new_tag }}
     permissions:
       contents: write
+      pull-requests: write
+      repository-projects: write
 
     steps:
       - name: Checkout
@@ -23,3 +28,15 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: v${{ steps.extract_version.outputs.version }}
+
+  call-deploy:
+    needs: extract-info
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Deploy
+        uses: ./.github/workflows/deploy
+        with:
+          tags: ${{ steps.extract_version.outputs.version }}
